@@ -153,7 +153,7 @@ public class TestElasticSearchCRUD {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         for (SearchHit hit: response.getHits()) {
-            resultList.add(hit.getSource());
+            resultList.add(hit.getSourceAsMap());
         }
 
         System.out.println("查询结果: " + resultList);

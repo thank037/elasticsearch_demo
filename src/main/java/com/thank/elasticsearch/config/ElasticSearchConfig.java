@@ -2,7 +2,7 @@ package com.thank.elasticsearch.config;
 
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,9 +33,11 @@ public class ElasticSearchConfig {
     @Bean
     public TransportClient client() throws UnknownHostException{
 
-        InetSocketTransportAddress node = new InetSocketTransportAddress(
-                InetAddress.getByName(clusterNodes), 9300
-        );
+//        InetSocketTransportAddress node = new InetSocketTransportAddress(
+//                InetAddress.getByName(clusterNodes), 9300
+//        );
+
+        TransportAddress node = new TransportAddress(InetAddress.getByName(clusterNodes), 9300);
 
         Settings settings = Settings.builder().put("cluster.name", clusterName).build();
 
